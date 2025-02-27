@@ -25,5 +25,16 @@ Este repositório fornece um arquivo `docker-compose.yml` para executar o **n8n*
 
    Se você estiver começando do zero, pode criar seu próprio `docker-compose.yml` ou clonar este projeto e navegar até a pasta do projeto:
    ```bash
-   git clone https://github.com/n8n-io/n8n.git
-   cd n8
+   git clone https://github.com/Prog-LucasAlves/ENG_N8N.git
+   cd n8n
+
+2. **Crie o arquivo `docker-compose.yml`:**
+
+    Aaixo está a estrutura para executar o **n8n** com Docker Compose:
+    ```yml
+    version: '3.8'
+
+    services:
+        n8n:
+            image: n8nio/n8n:latest
+            container_name: n8n
