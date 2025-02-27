@@ -32,9 +32,23 @@ Este repositório fornece um arquivo `docker-compose.yml` para executar o **n8n*
 
     Aaixo está a estrutura para executar o **n8n** com Docker Compose:
     ```yml
-    version: '3.8'
+    version: "3.8"
 
     services:
-        n8n:
-            image: n8nio/n8n:latest
-            container_name: n8n
+     n8n:
+      image: n8nio/n8n:latest
+      container_name: n8n
+      restart: always
+      ports:
+       - "127.0.0.1:5678:5678"
+    environment:
+      - N8N_HOST=${SUBDOMAIN}.${DOMAIN_NAME}
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=https
+      - NODE_ENV=production
+      - WWEBHOOK_URL=https://${SUBDOMAIN}.${DOMAIN_NAME}/
+      - GENERIC_TIMEZONE=${GENERIC_TIMEZONE}
+    volumes:
+      - n8n_data:/home/node/.n8n
+
+    **Refêrencia arquivo `.env` [link](https://docs.n8n.io/hosting/installation/server-setups/docker-compose/#5-create-docker-compose-file)**
