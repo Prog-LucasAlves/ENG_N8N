@@ -17,7 +17,7 @@ O n8n é uma ferramenta de automação de fluxos de trabalho de código aberto q
 
 ## Configuração com Docker
 
-Este repositório fornece um arquivo `docker-compose.yml` para executar o **n8n** e seus serviços necessários (como PostgreSQL) em containers Docker.
+Este repositório fornece um arquivo `docker-compose.yml` para executar o **n8n** e seus serviços necessários em containers Docker.
 
 ### Instruções de Configuração
 
@@ -30,7 +30,7 @@ Este repositório fornece um arquivo `docker-compose.yml` para executar o **n8n*
 
 2. **Crie o arquivo `docker-compose.yml`:**
 
-    Aaixo está a estrutura para executar o **n8n** com Docker Compose:
+    Abaixo está a estrutura para executar o **n8n** com Docker Compose:
     ```yml
     version: "3.8"
 
@@ -50,5 +50,31 @@ Este repositório fornece um arquivo `docker-compose.yml` para executar o **n8n*
       - GENERIC_TIMEZONE=${GENERIC_TIMEZONE}
     volumes:
       - n8n_data:/home/node/.n8n
+    ```
 
-    **Refêrencia arquivo `.env` [link](https://docs.n8n.io/hosting/installation/server-setups/docker-compose/#5-create-docker-compose-file)**
+    :bulb: **Referência arquivo `.env` :arrow_right: [link](https://docs.n8n.io/hosting/installation/server-setups/docker-compose/#5-create-docker-compose-file)**
+
+    Esta configuração define:
+
+    - **n8n**: O serviço principal com autenticação básica ativada.
+
+3. **Execute o Docker Compose:**
+
+   Na pasta contendo o `docker-compose.yml`, execute o seguinte comando para iniciar os serviços:
+   ```bash
+   docker-compose up -d
+   ```
+
+   Isso irá baixar as imagens Docker necesárias e iniciar os containers do n8n.
+
+4. **Acesse o n8n:**
+
+    Uma vez que os containers estejam rodando, você pode acessar o n8n abrindo um navegador e indo para:
+    ```edge
+    http://localhost:5678
+    ```
+
+    Faça login com as credenciais de **autenticação básica:**
+
+    - **Usuário:** `admin`
+    - **Senha:** `admin_password`
