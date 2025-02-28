@@ -15,6 +15,8 @@ O n8n é uma ferramenta de automação de fluxos de trabalho de código aberto q
 - Docker
 - Docker Compose
 
+## Estrutura do Projeto
+
 ## Configuração com Docker
 
 Este repositório fornece um arquivo `docker-compose.yml` para executar o **n8n** e seus serviços necessários em containers Docker.
@@ -51,8 +53,6 @@ Este repositório fornece um arquivo `docker-compose.yml` para executar o **n8n*
     volumes:
       - n8n_data:/home/node/.n8n
     ```
-
-    :bulb: **Referência arquivo `.env` :arrow_right: [link](https://docs.n8n.io/hosting/installation/server-setups/docker-compose/#5-create-docker-compose-file)**
 
     Esta configuração define:
 
