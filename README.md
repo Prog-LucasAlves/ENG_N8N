@@ -78,3 +78,34 @@ Este repositório fornece um arquivo `docker-compose.yml` para executar o **n8n*
 
     - **Usuário:** `admin`
     - **Senha:** `admin_password`
+
+### Opções de Configuração
+
+- **AutenticaçãoBásica:** Por padrão, o n8n tem autenticação básica ativada com um nome de usuário e senha. Voç~e pode modificar esses valores no arquivo `docker-compose.yml` conforme necessário.
+- **Dados Persistentes:** Os volumes estão mapeados para armazenara dados do n8n fora do container, garantindo que os dados persistam meso após reinicializações do container.
+  - Os dados do n8n são armazenados em `./n8n_data`.
+
+### **Parando os Serviços**
+
+Para parar os serviços, execute:
+```bash
+docker-compose down
+```
+
+Isso irá parar e remover o container en execução, mas seus dados irão persistir na pasta `n8n_data`.
+
+### **Solução de Problemas**
+
+- Container não está iniciando? Verifique os logs para erros executando:
+
+```bash
+docker-compose logs
+```
+
+### **Contribuindo**
+
+Contribuições para este projeto são bem-vindas! Se você encontrar algum problema ou quiser melhorar a configuração, fique à vontade para abrir um issue ou criar um pull request.
+
+### **Licença**
+
+Este projeto é licenciado sob a licença MIT, veja o arqquivo [LICENSE](https://github.com/Prog-LucasAlves/ENG_N8N/blob/main/LICENSE) para mais detalhes.
