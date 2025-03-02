@@ -7,6 +7,9 @@ services:
    ports:
      - "127.0.0.1:5678:5678"
    environment:
+    - N8N_BASIC_AUTH_ACTIVE=true
+    - N8N_BASIC_AUTH_USER=${AUTH_USER}
+    - N8N_BASIC_AUTH_PASSWORD=${AUTH_PASSWORD}
     - N8N_HOST=${SUBDOMAIN}.${DOMAIN_NAME}
     - N8N_PORT=5678
     - N8N_PROTOCOL=https
