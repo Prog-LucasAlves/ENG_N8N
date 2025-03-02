@@ -17,6 +17,14 @@ O n8n é uma ferramenta de automação de fluxos de trabalho de código aberto q
 
 ## Estrutura do Projeto
 
+```bash
+|
+|-- docker-compose.yml
+|-- .env
+|-- LICENSE
+|-- README.md
+```
+
 ## Configuração com Docker
 
 Este repositório fornece um arquivo `docker-compose.yml` para executar o **n8n** e seus serviços necessários em containers Docker.
@@ -44,6 +52,9 @@ Este repositório fornece um arquivo `docker-compose.yml` para executar o **n8n*
       ports:
        - "127.0.0.1:5678:5678"
     environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=${AUTH_USER}
+      - N8N_BASIC_AUTH_PASSWORD=${AUTH_PASSWORD}
       - N8N_HOST=${SUBDOMAIN}.${DOMAIN_NAME}
       - N8N_PORT=5678
       - N8N_PROTOCOL=https
@@ -56,9 +67,27 @@ Este repositório fornece um arquivo `docker-compose.yml` para executar o **n8n*
 
     Esta configuração define:
 
-    - **n8n**: O serviço principal com autenticação básica ativada.
+    - **n8n**:
+      - Este serviço roda o n8n usando a imagem `n8nio/n8n`.
+      - As variáveis de ambiente configuram a atenticação básica, definindo usuário e senha(`N8N_BASIC_AUTH_USER` e `N8N_BASIC_AUTH_PASSWORD`).
+      - A porta `5678`é mapeada para o host para que você possa acessar o n8n no navegador.
+    - **Volumas**:
+      - O volume `n8n_data` garante que os dados do n8n sejam persistidos no seu sistema local.
 
-3. **Execute o Docker Compose:**
+3. **Crie o arquivo `.env`:**
+
+   Esse arquivo pode ser usado para armazenar variáveis de ambiente sensíveis. Exemplo de conteúdo do arquivo `.env`:
+   ```env
+   N8N_BASIC_AUTH_ACTIVE=true
+   N8N_BASIC_AUTH_USER=admin
+   N8N_BASIC_AUTH_PASSWORD=admin
+   N8N_HOST=localhost
+   N8N_PORT=5678
+   N8N_PROTOCOL=http
+   N8N_PUBLIC_API_URL=http://localhost:5678/
+   ```
+
+4. **Execute o Docker Compose:**
 
    Na pasta contendo o `docker-compose.yml`, execute o seguinte comando para iniciar os serviços:
    ```bash
@@ -67,7 +96,7 @@ Este repositório fornece um arquivo `docker-compose.yml` para executar o **n8n*
 
    Isso irá baixar as imagens Docker necesárias e iniciar os containers do n8n.
 
-4. **Acesse o n8n:**
+5. **Acesse o n8n:**
 
     Uma vez que os containers estejam rodando, você pode acessar o n8n abrindo um navegador e indo para:
     ```edge
@@ -78,12 +107,6 @@ Este repositório fornece um arquivo `docker-compose.yml` para executar o **n8n*
 
     - **Usuário:** `admin`
     - **Senha:** `admin_password`
-
-### Opções de Configuração
-
-- **AutenticaçãoBásica:** Por padrão, o n8n tem autenticação básica ativada com um nome de usuário e senha. Voç~e pode modificar esses valores no arquivo `docker-compose.yml` conforme necessário.
-- **Dados Persistentes:** Os volumes estão mapeados para armazenara dados do n8n fora do container, garantindo que os dados persistam meso após reinicializações do container.
-  - Os dados do n8n são armazenados em `./n8n_data`.
 
 ### **Parando os Serviços**
 
